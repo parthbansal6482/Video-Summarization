@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.container {
+    background: #f4f4f4;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+input[type="url"] {
+    width: 70%;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.error {
+    color: red;
+}
+
+.result-container {
+    margin-top: 16px;
+}
+
+

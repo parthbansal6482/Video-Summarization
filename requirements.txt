@@ -1,0 +1,9 @@
+flask>=3.0.0
+pytube>=15.0.0
+youtube-transcript-api>=0.6.2
+gunicorn>=21.2.0
+
+# Add other dependencies from your summarization script if needed
+spacy>=3.7.0
+pytextrank>=3.3.0
+
