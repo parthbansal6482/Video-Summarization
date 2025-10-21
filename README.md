@@ -76,4 +76,3 @@ youtube-summarizer/
 
 ## License
 MIT
-
