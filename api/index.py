@@ -1,6 +1,7 @@
 import logging
 from flask import Flask, render_template, request, jsonify
 from summarizer import summarize_youtube_video
+import os
 
 # Configure logging
 logging.basicConfig(
@@ -41,6 +42,10 @@ def summarize():
     except Exception as exc:  # pylint: disable=broad-except
         logger.exception("Unhandled error while summarizing video")
         return jsonify({"error": str(exc), "status": 500}), 500
+
+# This is the entry point for Vercel
+def handler(request):
+    return app(request.environ, start_response)
 
 # For local development
 if __name__ == "__main__":
