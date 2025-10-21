@@ -1,29 +1,28 @@
-# YouTube Summarizer
+# YouTube Video Summarizer
 
-A Flask-based web application that summarizes YouTube videos by fetching the transcript and generating a concise extractive summary.
+A Flask-based web application that summarizes YouTube videos by fetching the transcript and generating a concise extractive summary using TextRank algorithm.
 
 ## Features
 - Paste a YouTube URL and get a quick summary
 - Async form submission with helpful error messages
-- Simple frequency-based summarization (no external ML services required)
-- Production-ready structure with logging and Procfile
+- TextRank-based extractive summarization using spaCy and pyTextRank
+- Clean, modern web interface
+- Local development focused (no deployment configuration)
 
 ## Project Structure
 ```
-youtube-summarizer/
-├── app.py
-├── summarizer.py
+Video Summarization/
+├── app.py                 # Main Flask application
+├── summarizer.py          # Video summarization logic
+├── requirements.txt       # Python dependencies
 ├── templates/
-│   └── index.html
+│   └── index.html        # Web interface
 ├── static/
 │   ├── css/
-│   │   └── styles.css
+│   │   └── styles.css    # Styling
 │   └── js/
-│       └── script.js
-├── requirements.txt
-├── Procfile
-├── .gitignore
-└── README.md
+│       └── script.js     # Frontend JavaScript
+└── README.md             # This file
 ```
 
 ## Setup (Local)
@@ -52,27 +51,32 @@ youtube-summarizer/
    ```
 5. Open `http://127.0.0.1:5000` in your browser.
 
-## Environment Variables
-- None required for basic operation. Add any tokens/config your custom summarizer may need via a `.env` and load them in `app.py` as needed.
+## Dependencies
+- **Flask** - Web framework
+- **pytube** - YouTube video ID extraction
+- **youtube-transcript-api** - Transcript fetching
+- **spaCy** - Natural language processing
+- **pyTextRank** - TextRank summarization algorithm
 
-## Deployment (Heroku)
-1. Ensure you have a Heroku app created and the CLI installed.
-2. Set Python buildpack automatically by having `requirements.txt`.
-3. Push to Heroku:
-   ```bash
-   git add .
-   git commit -m "Deploy YouTube summarizer"
-   heroku create
-   git push heroku main
-   ```
-4. (Optional) Pre-download spaCy model during build via release phase or run:
-   ```bash
-   heroku run python -m spacy download en_core_web_sm
-   ```
+## Environment Variables
+- None required for basic operation
+
+## Usage
+1. Start the application: `python app.py`
+2. Open `http://127.0.0.1:5000` in your browser
+3. Paste a YouTube URL and click "Summarize"
+4. Wait for the summary to be generated
 
 ## Notes
-- Some videos may not have transcripts or have disabled transcripts; in such cases, the app returns an error.
-- `pytube` is used to robustly parse video IDs from various URL formats.
+- Some videos may not have transcripts or have disabled transcripts; in such cases, the app returns an error
+- The app uses TextRank algorithm for extractive summarization
+- First run will download the spaCy English model (~50MB)
+- Works with various YouTube URL formats (youtube.com, youtu.be, shorts)
+
+## Troubleshooting
+- If you get import errors, ensure all dependencies are installed: `pip install -r requirements.txt`
+- If spaCy model is missing, run: `python -m spacy download en_core_web_sm`
+- For transcript errors, try a different video or check if the video has captions enabled
 
 ## License
 MIT
